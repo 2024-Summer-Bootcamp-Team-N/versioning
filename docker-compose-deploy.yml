@@ -1,0 +1,21 @@
+services:
+  backend:
+    image: legit0302/be:1.0.6 # 여기 수정
+    container_name: backend
+    restart: always
+    ports:
+      - '8000:8000'
+    networks:
+      - app-network
+
+  frontend:
+    image: legit0302/fe:1.0.4 # 여기 수정
+    container_name: front
+    ports:
+      - "5173:5173"
+    command: yarn dev --host
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
