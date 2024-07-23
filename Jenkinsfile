@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_COMPOSE_FILE = 'docker-compose-deploy.yml'
-        DEPLOY_SERVER="mocodoco@13.124.235.99"
+        DEPLOY_SERVER="mocodoco@43.200.97.88" # 배포가 진행되는 서버 주소 입니다.
     }
 
     stages {
