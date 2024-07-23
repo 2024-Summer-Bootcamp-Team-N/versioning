@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-		            cleanWS()
-                git branch: 'main', url: 'https://github.com/techeer-jenkins/versioning.git'
+                cleanWs()
+                git branch: 'main', url: 'https://github.com/2024-Summer-Bootcamp-Team-N/versioning.git'
             }
         }
 
@@ -48,13 +48,13 @@ pipeline {
     }
 
     post {
-		    always {
-                cleanWs(cleanWhenNotBuilt: false,
-                        deleteDirs: true,
-                        disableDeferredWipeout: true,
-                        notFailBuild: true,
-                        patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-                                [pattern: '.propsfile', type: 'EXCLUDE']])
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                            [pattern: '.propsfile', type: 'EXCLUDE']])
         }
         success {
             echo 'Build and deployment successful!'
