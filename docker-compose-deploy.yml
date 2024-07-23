@@ -1,6 +1,6 @@
 services:
   backend:
-    image: legit0302/be:1.0.6 # 여기 수정
+    image: legit0302/be:1.0.6 # 배포: 태그를 계속 수정하면서 push
     container_name: backend
     restart: always
     ports:
@@ -9,7 +9,7 @@ services:
       - app-network
 
   frontend:
-    image: legit0302/fe:1.0.4 # 여기 수정
+    image: legit0302/fe:1.0.4 # 배포: 태그를 계속 수정하면서 push
     container_name: front
     ports:
       - "5173:5173"
