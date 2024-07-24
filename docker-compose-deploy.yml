@@ -1,6 +1,6 @@
 services:
   backend:
-    image: legit0302/be:1.0.14 # 배포: 태그를 계속 수정하면서 push
+    image: legit0302/be:1.0.18 # 배포: 태그를 계속 수정하면서 push
     container_name: backend
     restart: always
     ports:
