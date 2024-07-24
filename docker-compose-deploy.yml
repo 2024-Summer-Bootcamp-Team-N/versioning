@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: legit0302/be:1.0.20  # 도커 허브에 있는 최신 백엔드 이미지
+    image: legit0302/be:1.0.21  # 도커 허브에 있는 최신 백엔드 이미지
     container_name: backend
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       - app-network
 
   frontend:
-    image: legit0302/fe:1.0.5  # 도커 허브에 있는 최신 프론트엔드 이미지
+    image: legit0302/fe:1.0.6  # 도커 허브에 있는 최신 프론트엔드 이미지
     container_name: frontend
     ports:
       - "5173:5173"
@@ -21,7 +21,7 @@ services:
       - app-network
 
   daphne:
-    image: legit0302/be:1.0.20  # 백엔드와 동일함
+    image: legit0302/be:1.0.21  # 백엔드와 동일함
     container_name: daphne
     restart: always
     ports:
