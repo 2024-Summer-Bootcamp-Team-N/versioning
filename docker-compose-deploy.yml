@@ -20,6 +20,15 @@ services:
     networks:
       - app-network
 
+  daphne:
+    image: legit0302/be:1.0.20  # 백엔드와 동일함
+    container_name: daphne
+    restart: always
+    ports:
+      - '8001:8001'
+    networks:
+      - app-network
+
   nginx:
     image: nginx:latest
     container_name: nginx
