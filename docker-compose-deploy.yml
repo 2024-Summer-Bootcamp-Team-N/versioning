@@ -11,7 +11,7 @@ services:
       - app-network
 
   frontend:
-    image: legit0302/fe:1.0.7  # 도커 허브에 있는 최신 프론트엔드 이미지
+    image: legit0302/fe:1.0.9  # 도커 허브에 있는 최신 프론트엔드 이미지
     container_name: frontend
     ports:
       - "5173:5173"
