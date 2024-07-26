@@ -1,6 +1,6 @@
 services:
   backend:
-    image: legit0302/be:1.0.29  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
+    image: legit0302/be:1.0.30  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
     container_name: backend
     restart: always
     ports:
@@ -21,7 +21,7 @@ services:
       - app-network
 
   daphne:
-    image: legit0302/be:1.0.29  # backend와 동일
+    image: legit0302/be:1.0.30  # backend와 동일
     container_name: daphne
     restart: always
     ports:
@@ -44,6 +44,8 @@ services:
       - backend
       - frontend
       - daphne
+      - prometheus
+      - grafana
     networks:
       - app-network
 
@@ -54,6 +56,28 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - app-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - /home/ec2-user/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /home/ec2-user/prometheus/data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - app-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - /home/ec2-user/grafana/data:/var/lib/grafana
+      - /home/ec2-user/grafana/grafana.ini:/etc/grafana/grafana.ini
+    ports:
+      - "3000:3000"
     networks:
       - app-network
 
