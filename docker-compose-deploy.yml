@@ -1,6 +1,6 @@
 services:
   backend:
-    image: legit0302/be:1.0.34  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
+    image: legit0302/be:1.0.40  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
     container_name: backend
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       - app-network
 
   frontend:
-    image: legit0302/fe:1.0.11  # 프론트엔드 이미지 태그
+    image: legit0302/fe:1.0.16  # 프론트엔드 이미지 태그
     container_name: frontend
     ports:
       - "5173:5173"
@@ -21,7 +21,7 @@ services:
       - app-network
 
   daphne:
-    image: legit0302/be:1.0.34  # backend와 동일
+    image: legit0302/be:1.0.40  # backend와 동일
     container_name: daphne
     restart: always
     ports:
@@ -46,6 +46,7 @@ services:
       - daphne
       - prometheus
       - grafana
+      - node exporter
     networks:
       - app-network
 
@@ -78,6 +79,14 @@ services:
       - /home/ec2-user/grafana/grafana.ini:/etc/grafana/grafana.ini
     ports:
       - "3000:3000"
+    networks:
+      - app-network
+
+  node_exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    ports:
+      - "9100:9100"
     networks:
       - app-network
 
