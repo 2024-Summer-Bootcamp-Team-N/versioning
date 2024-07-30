@@ -11,7 +11,7 @@ services:
       - app-network
 
   frontend:
-    image: legit0302/fe:1.0.16  # 프론트엔드 이미지 태그
+    image: legit0302/fe:1.0.17  # 프론트엔드 이미지 태그
     container_name: frontend
     ports:
       - "5173:5173"
