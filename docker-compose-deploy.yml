@@ -46,7 +46,7 @@ services:
       - daphne
       - prometheus
       - grafana
-      - node exporter
+      - node_exporter
     networks:
       - app-network
 
