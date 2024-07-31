@@ -1,6 +1,6 @@
 services:
   backend:
-    image: legit0302/be:1.0.48  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
+    image: legit0302/be:1.0.49  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
     container_name: backend
     restart: always
     ports:
@@ -21,7 +21,7 @@ services:
       - app-network
 
   daphne:
-    image: legit0302/be:1.0.48  # backend와 동일합니다
+    image: legit0302/be:1.0.49  # backend와 동일합니다
     container_name: daphne
     restart: always
     ports:
