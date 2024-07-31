@@ -11,7 +11,7 @@ services:
       - app-network
 
   frontend:
-    image: legit0302/fe:1.0.20  # 프론트엔드 이미지 태그
+    image: legit0302/fe:1.0.20  # 프론트엔드 이미지 태그 입니다
     container_name: frontend
     ports:
       - "5173:5173"
@@ -21,7 +21,7 @@ services:
       - app-network
 
   daphne:
-    image: legit0302/be:1.0.44  # backend와 동일
+    image: legit0302/be:1.0.44  # backend와 동일합니다
     container_name: daphne
     restart: always
     ports:
