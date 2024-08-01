@@ -20,7 +20,6 @@ services:
     networks:
       - app-network
 
-
   daphne:
     image: legit0302/be:1.0.60  # backend와 동일!!!
     container_name: daphne
@@ -29,6 +28,9 @@ services:
       - '8001:8001'
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
+    command: daphne -b 0.0.0.0 -p 8001 config.asgi:application
+    depends_on:
+      - redis
     networks:
       - app-network
 
@@ -48,6 +50,7 @@ services:
       - prometheus
       - grafana
       - node_exporter
+      - redis
     networks:
       - app-network
 
@@ -88,6 +91,14 @@ services:
     container_name: node_exporter
     ports:
       - "9100:9100"
+    networks:
+      - app-network
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    ports:
+      - "6379:6379"
     networks:
       - app-network
 
