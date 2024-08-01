@@ -1,6 +1,6 @@
 services:
   backend:
-    image: legit0302/be:1.0.58  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
+    image: legit0302/be:1.0.59  # 도커 허브에 있는 최신 백엔드 이미지 (태그 수정 하면서 올립니다!)
     container_name: backend
     restart: always
     ports:
@@ -24,21 +24,17 @@ services:
 
 
   daphne:
-    image: legit0302/be:1.0.58  # backend와 동일!!!
+    image: legit0302/be:1.0.59  # backend와 동일!!!
     container_name: daphne
     restart: always
     ports:
       - '8001:8001'
-    command: >
-      if [ "$DJANGO_ENV" = "production2" ]; then
-        daphne -b 0.0.0.0 -p 8001 config.asgi:application;
-      else
-        python manage.py runserver 0.0.0.0:8001;
-      fi
     environment:
-      - DJANGO_ENV=production2
+      - DJANGO_ENV=production
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - nginx
     networks:
       - app-network
 
